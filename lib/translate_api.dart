@@ -4,18 +4,21 @@ import 'package:http/http.dart' as http;
 const String baseUrl = 'https://aibit-translator.p.rapidapi.com/api/v1/translator/text';
 var client = http.Client();
 class TranslateApi {
-  Future<dynamic> post(dynamic object) async{
+  Future<dynamic> post(dynamic object, dynamic lang) async{
     var url =Uri.parse(baseUrl);
     client.get(url);
-    var payload = json.encode(object);
+    // var payload = json.encode(object);
+    // var langu = json.encode(lang);
+    // print(lang);
+    // print(payload);
     var headers = {
       'X-Rapidapi-Key': '69dfeff077mshac40cf601f1fd66p1fd8c6jsn097f6ef57576',
       'X-Rapidapi-Host': 'google-translate113.p.rapidapi.com'
     };
     var body = {
       'from': 'auto',
-      'to' : 'en',
-      'text' : payload,
+      'to' : lang,
+      'text' : object,
 
     };
     var response = await client.post(url, headers: headers, body: body);
